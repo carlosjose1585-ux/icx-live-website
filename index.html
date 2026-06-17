@@ -1,281 +1,570 @@
 <!DOCTYPE html>
 <html lang="en">
-
-  <head>
-    <meta charset="UTF-8">
-    <title>ICXLIVE WEB CODE</title>
-    <link rel="stylesheet" href="./style.css">
-
-  </head>
-    
-  <body>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ICX Live — Live Experiences, Engineered.</title>
+<meta name="description" content="ICX Live delivers broadcast-grade live production for sports, podcasts, hybrid events and entertainment — powered by professionals trained at the highest levels of the broadcast industry. Based in Miami, FL.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ── RESET & ROOT ── */
+:root{
+  --bg:#020817;
+  --blue:#0066ff;
+  --cyan:#28a7ff;
+  --white:#f4f8ff;
+  --muted:#aab8cc;
+  --card:#0a1830b3;
+  --border:rgba(40,167,255,0.15);
+  --hero:url("https://res.cloudinary.com/dfizcwryy/image/upload/ChatGPT_Image_17_may_2026_04_42_37_p.m._ztxeau");
+  --camera:url("https://res.cloudinary.com/dfizcwryy/image/upload/2-broadcast_camera_ojoqo0.jpg");
+  --audio:url("https://res.cloudinary.com/dfizcwryy/image/upload/3-audio_console_zvlsdg.jpg");
+  --studio:url("https://res.cloudinary.com/dfizcwryy/image/upload/5-studio_set_noonff.jpg");
+  --hybrid:url("https://res.cloudinary.com/dfizcwryy/image/upload/7.hybrid_event_hean9r.jpg");
+  --ai-bg:url("https://res.cloudinary.com/dfizcwryy/image/upload/8-ai_clipping_q9dwqp.jpg");
+  --sports:url("https://res.cloudinary.com/dfizcwryy/image/upload/3.sports_commentary_k7vfsa.jpg");
+  --podcast:url("https://res.cloudinary.com/dfizcwryy/image/upload/4.podcast_studio_ptmrz6.jpg");
+  --ent:url("https://res.cloudinary.com/dfizcwryy/image/upload/ChatGPT_Image_17_may_2026_02_55_57_p.m._lje2x7.jpg");
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:82px;-webkit-text-size-adjust:100%}
+body{font-family:Inter,system-ui,-apple-system,sans-serif;background:radial-gradient(circle at 20% 0%,rgba(0,102,255,0.18),transparent 34%),linear-gradient(135deg,#020817,#07162f 55%,#020817);color:var(--white);overflow-x:hidden;line-height:1.6;min-height:100vh}
+body::before{content:"";position:fixed;inset:0;z-index:0;background-image:linear-gradient(rgba(40,167,255,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(40,167,255,0.035) 1px,transparent 1px);background-size:74px 74px;mask-image:radial-gradient(circle at center,#000 20%,transparent 82%);-webkit-mask-image:radial-gradient(circle at center,#000 20%,transparent 82%);pointer-events:none}
+img{max-width:100%;display:block}
+a{text-decoration:none}
 
-<div class="lang-toggle">
+/* ── NAV ── */
+.nav{position:fixed;inset:0 0 auto;z-index:200;height:82px;padding:0 clamp(16px,5vw,7vw);display:flex;align-items:center;justify-content:space-between;background:rgba(2,8,23,0.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+.brand{display:flex;align-items:center;gap:16px;color:var(--white)}
+.main-logo{height:58px;width:auto;object-fit:contain;border-radius:6px;transition:.28s}
+.main-logo:hover{transform:scale(1.03)}
+.brand em{border-left:1px solid rgba(255,255,255,0.16);padding-left:14px;font-style:normal;text-transform:uppercase;letter-spacing:.16em;font-size:.7rem;line-height:1.4;color:rgba(255,255,255,.76);font-weight:800}
+.nav-desk{display:flex;align-items:center;gap:30px}
+.nav-desk a{color:rgba(244,248,255,.78);font-size:.78rem;font-weight:800;letter-spacing:.04em;transition:.22s}
+.nav-desk a:hover{color:var(--cyan)}
+.nav-cta{color:var(--cyan)!important;border:1px solid rgba(40,167,255,.46);padding:10px 20px;border-radius:999px;background:rgba(0,102,255,.08);transition:.22s!important}
+.nav-cta:hover{background:rgba(0,102,255,.18)!important}
+.hamburger{display:none;background:none;border:none;color:var(--white);cursor:pointer;padding:6px;-webkit-tap-highlight-color:transparent}
+.hamburger svg{display:block}
+
+/* ── MOBILE MENU ── */
+.mob-menu{display:none;position:fixed;top:82px;left:0;right:0;z-index:190;background:rgba(2,8,23,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);flex-direction:column;padding:16px clamp(16px,5vw,7vw) 24px}
+.mob-menu.open{display:flex}
+.mob-menu a{color:rgba(244,248,255,.82);font-size:1rem;font-weight:700;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06);transition:.2s}
+.mob-menu a:last-child{border:none;margin-top:12px;background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;padding:14px 20px;border-radius:999px;text-align:center}
+
+/* ── LANG TOGGLE ── */
+.lang{position:fixed;right:clamp(14px,3vw,32px);bottom:clamp(14px,3vw,32px);z-index:300;display:flex;gap:5px;padding:6px;border-radius:999px;background:linear-gradient(135deg,rgba(10,24,48,.95),rgba(5,12,28,.95));border:1px solid rgba(40,167,255,.24);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 10px 40px rgba(0,0,0,.4)}
+.lang-btn{border:0;width:50px;height:37px;border-radius:999px;background:transparent;color:rgba(244,248,255,.6);font-weight:900;cursor:pointer;font-size:.78rem;letter-spacing:.08em;transition:.22s;-webkit-tap-highlight-color:transparent}
+.lang-btn.active{color:#fff;background:linear-gradient(135deg,var(--blue),var(--cyan));box-shadow:0 0 16px rgba(40,167,255,.35)}
+
+/* ── HERO ── */
+.hero{min-height:100svh;display:flex;align-items:center;padding:clamp(100px,14vh,150px) clamp(16px,7vw,7vw) clamp(70px,8vh,95px);position:relative;background:linear-gradient(90deg,rgba(2,8,23,.98) 0%,rgba(2,8,23,.88) 36%,rgba(2,8,23,.32) 68%,rgba(2,8,23,.94) 100%),var(--hero);background-size:cover;background-position:center right;border-bottom:1px solid var(--border)}
+.hero::after{content:"";position:absolute;inset:auto 0 0;height:160px;background:linear-gradient(transparent,#020817);pointer-events:none}
+.hero-inner{position:relative;z-index:2;max-width:760px;width:100%}
+.eyebrow{display:inline-flex;color:var(--cyan);text-transform:uppercase;letter-spacing:.16em;font-size:.66rem;font-weight:950}
+.hero h1{margin-top:16px;font-size:clamp(2.6rem,7vw,6.5rem);line-height:.92;letter-spacing:-.07em;font-weight:950}
+.hero h1 span{background:linear-gradient(135deg,var(--blue),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{margin-top:22px;max-width:600px;color:rgba(244,248,255,.78);font-size:clamp(.9rem,1.8vw,1.04rem);line-height:1.75}
+.hero-btns{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap}
+.btn-p,.btn-s{min-height:50px;padding:0 26px;display:inline-flex;align-items:center;justify-content:center;border-radius:12px;font-size:.86rem;font-weight:950;transition:.26s;white-space:nowrap}
+.btn-p{color:#fff;background:linear-gradient(135deg,var(--blue),var(--cyan));box-shadow:0 16px 40px rgba(0,102,255,.32)}
+.btn-p:hover{transform:translateY(-3px);box-shadow:0 22px 48px rgba(0,102,255,.44)}
+.btn-s{color:#fff;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.04);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.btn-s:hover{transform:translateY(-3px);border-color:rgba(40,167,255,.5)}
+.trust-row{margin-top:38px;display:grid;grid-template-columns:repeat(5,1fr);max-width:900px;border-top:1px solid rgba(255,255,255,.08)}
+.trust-item{display:flex;align-items:center;gap:10px;min-height:68px;padding:10px 14px;color:var(--cyan);border-right:1px solid rgba(255,255,255,.1);font-weight:900;font-size:.95rem}
+.trust-item:last-child{border-right:0}
+.trust-item span{color:rgba(244,248,255,.82);font-size:.78rem;line-height:1.25;font-weight:800}
+
+/* ── CRED BANNER ── */
+.cred{background:rgba(0,40,120,.18);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:16px clamp(16px,7vw,7vw);display:flex;align-items:center;justify-content:center;gap:clamp(14px,2.5vw,32px);flex-wrap:wrap}
+.cred-item{display:flex;align-items:center;gap:9px;font-size:.74rem;font-weight:800;color:rgba(244,248,255,.68);letter-spacing:.06em;text-transform:uppercase}
+.cdot{width:4px;height:4px;border-radius:50%;background:var(--cyan);flex-shrink:0}
+.c-hl{color:var(--cyan)}
+
+/* ── SECTION WRAPPER ── */
+.wrap{width:min(1260px,calc(100% - clamp(32px,8vw,88px)));margin:0 auto}
+.section{padding:clamp(60px,8vh,90px) 0}
+.sec-label{display:inline-flex;align-items:center;gap:8px;color:var(--cyan);font-size:.66rem;font-weight:950;letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px}
+.sec-label::before{content:"";width:18px;height:1px;background:var(--cyan)}
+.sec-title{font-size:clamp(1.9rem,4vw,3.6rem);font-weight:950;letter-spacing:-.055em;line-height:1;margin-bottom:14px}
+.sec-sub{color:var(--muted);font-size:clamp(.88rem,1.5vw,.97rem);line-height:1.72;max-width:540px}
+
+/* ── WHY ── */
+.why-head{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:end;margin-bottom:36px}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.img-card{position:relative;overflow:hidden;border-radius:18px;border:1px solid rgba(255,255,255,.13);background-size:cover;background-position:center;min-height:clamp(240px,28vw,310px);display:flex;align-items:flex-end;box-shadow:0 20px 70px rgba(0,0,0,.3);transition:.32s}
+.img-card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(40,167,255,.17),transparent 34%),linear-gradient(180deg,rgba(2,8,23,.04),rgba(2,8,23,.92))}
+.img-card>*{position:relative;z-index:1}
+.img-card-body{padding:clamp(16px,2vw,26px)}
+.img-card h3{font-size:clamp(1rem,1.8vw,1.2rem);font-weight:950;letter-spacing:-.04em;margin-bottom:7px}
+.img-card p{color:rgba(244,248,255,.7);font-size:clamp(.8rem,1.3vw,.88rem);line-height:1.6}
+.img-card:hover{transform:translateY(-5px);border-color:rgba(40,167,255,.4)}
+.c-cam{background-image:var(--camera)}
+.c-aud{background-image:var(--audio)}
+.c-stu{background-image:var(--studio)}
+
+/* ── ABOUT ── */
+.about-wrap{background:linear-gradient(135deg,rgba(0,40,120,.18),rgba(2,8,23,0));border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.about-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(36px,6vw,70px);align-items:center;padding:clamp(60px,8vh,90px) 0}
+.about-vis{position:relative}
+.about-img{border-radius:18px;border:1px solid var(--border);aspect-ratio:4/3;background:var(--camera);background-size:cover;background-position:center;box-shadow:0 36px 72px rgba(0,0,0,.5)}
+.about-badge{position:absolute;bottom:-18px;left:20px;background:linear-gradient(135deg,var(--blue),var(--cyan));border-radius:14px;padding:14px 20px;box-shadow:0 12px 32px rgba(0,102,255,.44)}
+.about-badge-n{font-size:clamp(1.6rem,3vw,2.1rem);font-weight:950;line-height:1;letter-spacing:-.04em}
+.about-badge-l{font-size:.64rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;opacity:.88;margin-top:3px}
+.about-copy{padding-bottom:18px}
+.about-h{font-size:clamp(1.5rem,2.5vw,2.2rem);font-weight:950;letter-spacing:-.04em;line-height:1.05;margin:10px 0 7px}
+.about-role{color:var(--cyan);font-size:.74rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px}
+.about-bio{color:rgba(244,248,255,.72);font-size:clamp(.88rem,1.5vw,.94rem);line-height:1.78;margin-bottom:24px}
+.tech-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:26px}
+.t-tag{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:5px 12px;font-size:.7rem;font-weight:700;letter-spacing:.06em;color:rgba(244,248,255,.75);transition:.2s}
+.t-tag:hover{border-color:var(--cyan);color:var(--cyan)}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.stat-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center}
+.stat-n{font-size:clamp(1.5rem,3vw,1.9rem);font-weight:950;background:linear-gradient(135deg,var(--blue),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-.04em}
+.stat-l{font-size:.68rem;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:4px}
+
+/* ── SERVICES ── */
+.svc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:36px}
+.svc-card{position:relative;overflow:hidden;border-radius:18px;border:1px solid rgba(255,255,255,.13);background-size:cover;background-position:center;min-height:clamp(280px,30vw,350px);display:flex;align-items:flex-end;transition:.32s}
+.svc-card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(40,167,255,.15),transparent 34%),linear-gradient(180deg,rgba(2,8,23,.04) 20%,rgba(2,8,23,.95) 100%)}
+.svc-card>*{position:relative;z-index:1}
+.svc-body{padding:clamp(16px,2vw,24px)}
+.svc-tag{display:block;font-size:.62rem;font-weight:950;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:6px}
+.svc-card h3{font-size:clamp(.95rem,1.6vw,1.12rem);font-weight:950;letter-spacing:-.03em;line-height:1.1;margin-bottom:7px}
+.svc-card p{color:rgba(244,248,255,.65);font-size:clamp(.76rem,1.2vw,.82rem);line-height:1.55}
+.svc-card:hover{transform:translateY(-5px);border-color:rgba(40,167,255,.4)}
+.s-sp{background-image:var(--sports)}
+.s-po{background-image:var(--podcast)}
+.s-hy{background-image:var(--hybrid)}
+.s-en{background-image:var(--ent)}
+.s-ai{background-image:var(--ai-bg)}
+
+/* ── AI SECTION ── */
+.ai-wrap{background:linear-gradient(135deg,rgba(0,30,80,.3),rgba(2,8,23,.1));border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.ai-head{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,50px);align-items:end;margin-bottom:44px}
+.ai-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(0,102,255,.13);border:1px solid rgba(0,102,255,.26);border-radius:50px;padding:6px 14px;font-size:.64rem;font-weight:950;letter-spacing:.12em;color:var(--cyan);text-transform:uppercase;margin-bottom:12px}
+.ai-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.ai-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:clamp(18px,2.5vw,28px);transition:.3s;position:relative;overflow:hidden}
+.ai-card::after{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:0;transition:.3s}
+.ai-card:hover{border-color:rgba(40,167,255,.3);transform:translateY(-4px)}
+.ai-card:hover::after{opacity:1}
+.ai-icon{width:44px;height:44px;border-radius:10px;background:rgba(0,102,255,.1);border:1px solid rgba(0,102,255,.2);display:grid;place-items:center;font-size:1.1rem;margin-bottom:14px}
+.ai-card h4{font-size:clamp(.92rem,1.5vw,1rem);font-weight:950;letter-spacing:-.02em;margin-bottom:7px}
+.ai-card p{color:var(--muted);font-size:clamp(.78rem,1.3vw,.83rem);line-height:1.62;margin-bottom:13px}
+.ai-pill{display:inline-block;background:rgba(40,167,255,.1);border:1px solid rgba(40,167,255,.2);border-radius:50px;padding:4px 11px;font-size:.65rem;font-weight:800;color:var(--cyan);letter-spacing:.06em}
+
+/* ── WORKFLOW ── */
+.wf-grid{display:grid;grid-template-columns:1fr 90px 1fr 90px 1fr;align-items:center;gap:12px;margin-top:36px}
+.wf-step{min-height:clamp(190px,22vw,230px);padding:clamp(20px,2.5vw,30px);border-radius:20px;background:linear-gradient(180deg,rgba(10,30,65,.78),rgba(4,14,32,.55));border:1px solid rgba(40,167,255,.16);transition:.3s}
+.wf-step:hover{transform:translateY(-4px);border-color:rgba(40,167,255,.32)}
+.wf-step b{width:54px;height:54px;display:grid;place-items:center;border-radius:50%;border:1px solid rgba(40,167,255,.4);background:rgba(0,102,255,.1);font-size:1.35rem;font-style:normal}
+.wf-step small{display:block;margin-top:16px;color:var(--cyan);font-size:.76rem;font-weight:950;letter-spacing:.1em}
+.wf-step h3{margin-top:4px;font-size:clamp(1rem,1.8vw,1.15rem);font-weight:950;letter-spacing:-.03em}
+.wf-step p{margin-top:7px;color:rgba(244,248,255,.68);font-size:clamp(.8rem,1.3vw,.87rem);line-height:1.6}
+.wf-line{height:2px;position:relative;background:linear-gradient(90deg,rgba(40,167,255,.05),rgba(40,167,255,.9),rgba(40,167,255,.05));border-radius:999px;overflow:hidden}
+.wf-line::after{content:"";position:absolute;top:50%;left:-14px;width:11px;height:11px;transform:translateY(-50%);border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan),0 0 24px var(--cyan);animation:flow 2.4s linear infinite}
+@keyframes flow{0%{left:-14px;opacity:0}12%{opacity:1}88%{opacity:1}100%{left:100%;opacity:0}}
+
+/* ── QUOTE ── */
+.quote-wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(24px,4vw,44px);align-items:center;padding:clamp(28px,4vw,48px);border-radius:22px;background:linear-gradient(135deg,rgba(0,102,255,.18),rgba(2,8,23,.9)),var(--studio);background-size:cover;background-position:center;border:1px solid rgba(40,167,255,.22);box-shadow:0 24px 72px rgba(0,0,0,.4)}
+.quote-copy p{color:rgba(244,248,255,.7);font-size:clamp(.86rem,1.5vw,.92rem);line-height:1.72;margin-top:12px;max-width:380px}
+.q-form{display:grid;gap:12px;padding:clamp(16px,2.5vw,26px);border-radius:16px;background:rgba(2,8,23,.74);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.q-form input,.q-form select,.q-form textarea{width:100%;padding:14px 16px;border-radius:11px;border:1px solid rgba(255,255,255,.14);background:rgba(4,14,32,.78);color:var(--white);font:inherit;font-size:.88rem;outline:none;transition:.2s;-webkit-appearance:none;appearance:none}
+.q-form input:focus,.q-form select:focus,.q-form textarea:focus{border-color:rgba(40,167,255,.5);box-shadow:0 0 0 3px rgba(40,167,255,.08)}
+.q-form input::placeholder,.q-form textarea::placeholder{color:rgba(244,248,255,.38)}
+.q-form option{color:#020817;background:#fff}
+.q-form textarea{resize:vertical}
+.q-form button{min-height:50px;border:0;border-radius:11px;color:#fff;background:linear-gradient(135deg,var(--blue),var(--cyan));font:inherit;font-weight:950;font-size:.9rem;cursor:pointer;box-shadow:0 16px 40px rgba(0,102,255,.26);transition:.26s;-webkit-tap-highlight-color:transparent}
+.q-form button:hover{transform:translateY(-2px)}
+.f-status{display:none;padding:11px 14px;border-radius:11px;font-size:.84rem;font-weight:800;text-align:center;margin-top:2px}
+.f-status.ok{display:block;background:rgba(23,201,100,.12);border:1px solid rgba(23,201,100,.32);color:#39e58c}
+.f-status.err{display:block;background:rgba(255,80,80,.1);border:1px solid rgba(255,80,80,.28);color:#ff8b8b}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid rgba(255,255,255,.1)}
+.foot-inner{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:clamp(20px,4vw,36px);padding:clamp(36px,5vh,48px) 0 0}
+.foot-logo{height:60px;width:auto;object-fit:contain;border-radius:6px;margin-bottom:14px}
+.foot-brand p{color:var(--muted);font-size:.82rem;line-height:1.6;max-width:300px}
+.foot-col h5{font-size:.7rem;font-weight:950;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px}
+.foot-col a{display:block;color:var(--muted);font-size:.82rem;margin-bottom:9px;transition:.2s}
+.foot-col a:hover{color:var(--white)}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;padding:clamp(18px,3vh,26px) 0 clamp(36px,5vh,52px);border-top:1px solid rgba(255,255,255,.07);margin-top:clamp(24px,4vh,32px)}
+.foot-bottom p{color:rgba(244,248,255,.32);font-size:.76rem}
+
+/* ══════════════════════════════
+   TABLET  768px – 1099px
+══════════════════════════════ */
+@media(max-width:1099px){
+  .nav{height:76px}
+  .nav-desk{display:none}
+  .hamburger{display:block}
+  .why-head{grid-template-columns:1fr;gap:20px}
+  .why-grid{grid-template-columns:1fr 1fr}
+  .c-stu{display:none}
+  .about-grid{grid-template-columns:1fr;gap:clamp(50px,7vw,60px)}
+  .about-vis{max-width:520px;margin:0 auto}
+  .svc-grid{grid-template-columns:repeat(2,1fr)}
+  .s-ai{grid-column:span 2}
+  .ai-head{grid-template-columns:1fr;gap:16px}
+  .ai-grid{grid-template-columns:1fr 1fr}
+  .wf-grid{grid-template-columns:1fr}
+  .wf-line{width:2px;height:44px;margin:0 auto;background:linear-gradient(180deg,rgba(40,167,255,.05),rgba(40,167,255,.9),rgba(40,167,255,.05))}
+  .wf-line::after{animation:flowY 2.4s linear infinite;top:-12px;left:50%;transform:translateX(-50%)}
+  @keyframes flowY{0%{top:-12px;opacity:0}12%{opacity:1}88%{opacity:1}100%{top:100%;opacity:0}}
+  .quote-wrap{grid-template-columns:1fr;padding:clamp(24px,4vw,36px)}
+  .foot-inner{grid-template-columns:1fr 1fr}
+  .foot-brand{grid-column:span 2}
+  .foot-bottom{flex-direction:column;text-align:center}
+}
+
+/* ══════════════════════════════
+   MOBILE  max 767px
+══════════════════════════════ */
+@media(max-width:767px){
+  html{scroll-padding-top:72px}
+  .nav{height:68px;padding:0 18px}
+  .main-logo{height:48px}
+  .brand em{display:none}
+  .mob-menu{top:68px}
+  .hero{padding:96px 18px 68px;min-height:auto;background-position:60% center}
+  .hero h1{font-size:clamp(2.2rem,8vw,3rem);letter-spacing:-.045em}
+  .hero p{font-size:.92rem}
+  .hero-btns{flex-direction:column;gap:10px}
+  .btn-p,.btn-s{width:100%;height:50px;border-radius:14px}
+  .trust-row{grid-template-columns:1fr 1fr;max-width:100%}
+  .trust-item{padding:11px 10px;min-height:60px}
+  .trust-item:nth-child(2n){border-right:0}
+  .trust-item:nth-child(3),.trust-item:nth-child(4),.trust-item:nth-child(5){border-top:1px solid rgba(255,255,255,.08)}
+  .trust-item:nth-child(5){grid-column:span 2}
+  .cred{flex-direction:column;align-items:flex-start;gap:8px;padding:18px}
+  .section{padding:56px 0}
+  .sec-title{font-size:clamp(1.7rem,6vw,2.1rem)}
+  .why-head{grid-template-columns:1fr;gap:14px}
+  .why-grid{grid-template-columns:1fr}
+  .c-stu{display:flex}
+  .img-card{min-height:260px}
+  .about-grid{grid-template-columns:1fr;gap:48px;padding:56px 0}
+  .about-vis{max-width:100%}
+  .about-badge{bottom:-14px;left:16px;padding:12px 16px}
+  .stats-row{grid-template-columns:repeat(3,1fr)}
+  .svc-grid{grid-template-columns:1fr}
+  .s-ai{grid-column:span 1}
+  .svc-card{min-height:260px}
+  .ai-head{grid-template-columns:1fr;gap:14px}
+  .ai-grid{grid-template-columns:1fr}
+  .wf-grid{grid-template-columns:1fr;gap:0}
+  .quote-wrap{grid-template-columns:1fr;padding:22px 18px;border-radius:18px}
+  .quote-copy p{max-width:100%}
+  .f-row{grid-template-columns:1fr}
+  .foot-inner{grid-template-columns:1fr;gap:clamp(20px,4vw,28px);padding:clamp(32px,5vh,44px) 0 0}
+  .foot-brand{grid-column:span 1}
+  .lang{right:14px;bottom:14px}
+  .lang-btn{width:44px;height:33px;font-size:.74rem}
+}
+
+/* ══════════════════════════════
+   SMALL MOBILE  max 390px
+══════════════════════════════ */
+@media(max-width:390px){
+  .hero h1{font-size:2rem}
+  .trust-row{grid-template-columns:1fr}
+  .trust-item{border-right:0!important;border-top:1px solid rgba(255,255,255,.08)!important}
+  .trust-item:first-child{border-top:0!important}
+  .trust-item:nth-child(5){grid-column:span 1}
+  .stats-row{grid-template-columns:1fr 1fr}
+  .stat-box:last-child{grid-column:span 2}
+}
+</style>
+</head>
+<body>
+
+<!-- LANG TOGGLE -->
+<div class="lang">
   <button class="lang-btn active" data-lang="en">EN</button>
   <button class="lang-btn" data-lang="es">ES</button>
 </div>
 
+<!-- NAV -->
 <header class="nav">
   <a class="brand" href="#top">
     <img src="https://res.cloudinary.com/dfizcwryy/image/upload/ChatGPT_Image_17_may_2026_03_59_14_p.m._ubjbgm.jpg" alt="ICX Live" class="main-logo">
-
-    <em data-en="LIVE EXPERIENCES,<br>ENGINEERED." data-es="EXPERIENCIAS EN VIVO,<br>DISEÑADAS.">
-      LIVE EXPERIENCES,<br>ENGINEERED.
-    </em>
+    <em data-en="LIVE EXPERIENCES,<br>ENGINEERED." data-es="EXPERIENCIAS EN VIVO,<br>DISEÑADAS.">LIVE EXPERIENCES,<br>ENGINEERED.</em>
   </a>
-
-  <nav>
+  <div class="nav-desk">
     <a href="#why" data-en="Why ICX" data-es="Por qué ICX">Why ICX</a>
+    <a href="#about" data-en="About" data-es="Nosotros">About</a>
     <a href="#services" data-en="Services" data-es="Servicios">Services</a>
-    <a href="#workflow" data-en="Workflow" data-es="Workflow">Workflow</a>
-    <a href="#quote" data-en="Quote" data-es="Cotización">Quote</a>
-  </nav>
-
-  <a class="nav-btn" href="#quote" data-en="Request a Quote" data-es="Solicitar Cotización">Request a Quote</a>
+    <a href="#ai" data-en="AI Tools" data-es="AI Tools">AI Tools</a>
+    <a href="#quote" class="nav-cta" data-en="Request a Quote" data-es="Solicitar Cotización">Request a Quote</a>
+  </div>
+  <button class="hamburger" id="hbg" aria-label="Open menu">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect y="5" width="24" height="2" rx="1" fill="white"/><rect y="11" width="24" height="2" rx="1" fill="white"/><rect y="17" width="24" height="2" rx="1" fill="white"/></svg>
+  </button>
 </header>
 
+<!-- MOBILE MENU -->
+<nav class="mob-menu" id="mob">
+  <a href="#why" data-en="Why ICX" data-es="Por qué ICX">Why ICX</a>
+  <a href="#about" data-en="About" data-es="Nosotros">About</a>
+  <a href="#services" data-en="Services" data-es="Servicios">Services</a>
+  <a href="#ai" data-en="AI Tools" data-es="AI Tools">AI Tools</a>
+  <a href="#quote" data-en="Request a Quote →" data-es="Solicitar Cotización →">Request a Quote →</a>
+</nav>
+
 <main id="top">
+
+  <!-- HERO -->
   <section class="hero">
-    <div class="hero-content">
-      <span class="eyebrow" data-en="Premium Live Production Company" data-es="Producción Profesional en Vivo">
-        Premium Live Production Company
-      </span>
-
-      <h1 data-en="Broadcast-grade live production built for modern digital audiences." data-es="Producción en vivo profesional para audiencias digitales modernas.">
-        Broadcast-grade live production built for modern digital audiences.
-      </h1>
-
-      <p data-en="ICX Live delivers multicamera livestreams, sports productions, podcasts, hybrid events and entertainment formats powered by real broadcast engineering experience." data-es="ICX Live desarrolla livestreams multicámara, producciones deportivas, podcasts, eventos híbridos y formatos de entretenimiento respaldados por experiencia real en broadcast.">
-        ICX Live delivers multicamera livestreams, sports productions, podcasts, hybrid events and entertainment formats powered by real broadcast engineering experience.
-      </p>
-
-      <div class="hero-actions">
-        <a href="#quote" class="btn-primary" data-en="Start Your Production →" data-es="Comienza tu Producción →">Start Your Production →</a>
-        <a href="#services" class="btn-secondary" data-en="Explore Services" data-es="Explorar Servicios">Explore Services</a>
+    <div class="hero-inner">
+      <span class="eyebrow" data-en="Premium Live Production Company" data-es="Producción Profesional en Vivo">Premium Live Production Company</span>
+      <h1 data-en="<span>Broadcast-grade</span> live production built for modern digital audiences." data-es="Producción de nivel <span>broadcast</span> para audiencias digitales modernas."><span>Broadcast-grade</span> live production built for modern digital audiences.</h1>
+      <p data-en="ICX Live delivers multicamera livestreams, sports productions, podcasts, hybrid events and entertainment formats — powered by professionals trained at the highest levels of the broadcast industry." data-es="ICX Live desarrolla livestreams multicámara, producciones deportivas, podcasts, eventos híbridos y formatos de entretenimiento — respaldado por profesionales formados en los más altos niveles de la industria broadcast.">ICX Live delivers multicamera livestreams, sports productions, podcasts, hybrid events and entertainment formats — powered by professionals trained at the highest levels of the broadcast industry.</p>
+      <div class="hero-btns">
+        <a href="#quote" class="btn-p" data-en="Start Your Production →" data-es="Comienza tu Producción →">Start Your Production →</a>
+        <a href="#services" class="btn-s" data-en="Explore Services" data-es="Explorar Servicios">Explore Services</a>
       </div>
-
       <div class="trust-row">
-        <div>▣ <span data-en="Multicamera Production" data-es="Producción Multicámara">Multicamera Production</span></div>
-        <div>◉ <span data-en="Professional Audio" data-es="Audio Profesional">Professional Audio</span></div>
-        <div>◎ <span data-en="Remote Guests" data-es="Invitados Remotos">Remote Guests</span></div>
-        <div>▤ <span data-en="Live Graphics" data-es="Gráficos en Vivo">Live Graphics</span></div>
-        <div>◈ <span data-en="Reliable Delivery" data-es="Entrega Confiable">Reliable Delivery</span></div>
+        <div class="trust-item">▣ <span data-en="Multicamera Production" data-es="Producción Multicámara">Multicamera Production</span></div>
+        <div class="trust-item">◉ <span data-en="Professional Audio" data-es="Audio Profesional">Professional Audio</span></div>
+        <div class="trust-item">◎ <span data-en="Remote Guests" data-es="Invitados Remotos">Remote Guests</span></div>
+        <div class="trust-item">▤ <span data-en="Live Graphics" data-es="Gráficos en Vivo">Live Graphics</span></div>
+        <div class="trust-item">◈ <span data-en="AI-Powered Tools" data-es="Herramientas con AI">AI-Powered Tools</span></div>
       </div>
     </div>
   </section>
 
-  <section id="why" class="section split-section">
-    <div class="section-intro">
-      <span class="eyebrow" data-en="Why ICX" data-es="Por qué ICX">Why ICX</span>
+  <!-- CRED BANNER -->
+  <div class="cred">
+    <div class="cred-item"><span class="cdot"></span><span data-en="Our team brings experience from" data-es="Nuestro equipo tiene experiencia en">Our team brings experience from</span></div>
+    <div class="cred-item"><span class="c-hl" data-en="Major U.S. Broadcast Networks" data-es="Grandes Networks de EE.UU.">Major U.S. Broadcast Networks</span></div>
+    <div class="cred-item"><span class="cdot"></span><span data-en="National Sports Broadcasting" data-es="Transmisión Deportiva Nacional">National Sports Broadcasting</span></div>
+    <div class="cred-item"><span class="cdot"></span><span data-en="15+ Years of Broadcast Engineering" data-es="15+ Años de Ingeniería Broadcast">15+ Years of Broadcast Engineering</span></div>
+    <div class="cred-item"><span class="cdot"></span><span data-en="Network-Level Technical Expertise" data-es="Expertise Técnico de Nivel Network">Network-Level Technical Expertise</span></div>
+  </div>
 
-      <h2 data-en="Real production value. Not just a stream." data-es="Producción profesional real. No solo un stream.">
-        Real production value. Not just a stream.
-      </h2>
-
-      <p data-en="We combine broadcast workflows, technical production and modern streaming technology to deliver reliable and polished live experiences." data-es="Combinamos workflows broadcast, producción técnica y tecnología moderna de streaming para crear experiencias en vivo confiables y profesionales.">
-        We combine broadcast workflows, technical production and modern streaming technology to deliver reliable and polished live experiences.
-      </p>
-    </div>
-
-    <div class="why-grid">
-      <article class="image-card img-camera">
+  <!-- WHY -->
+  <section id="why" class="section">
+    <div class="wrap">
+      <div class="why-head">
         <div>
-          <h3 data-en="Broadcast Experience" data-es="Experiencia Broadcast">Broadcast Experience</h3>
-          <p data-en="Real-world television, REMI and live sports production expertise." data-es="Experiencia real en televisión, REMI y producciones deportivas en vivo.">
-            Real-world television, REMI and live sports production expertise.
-          </p>
+          <div class="sec-label" data-en="Why ICX" data-es="Por qué ICX">Why ICX</div>
+          <h2 class="sec-title" data-en="Real production value.<br>Not just a stream." data-es="Valor de producción real.<br>No solo un stream.">Real production value.<br>Not just a stream.</h2>
         </div>
-      </article>
-
-      <article class="image-card img-audio">
-        <div>
-          <h3 data-en="Professional Audio" data-es="Audio Profesional">Professional Audio</h3>
-          <p data-en="Clean sound, monitoring, IFBs and reliable communication workflows." data-es="Audio limpio, monitoreo, IFBs y workflows de comunicación confiables.">
-            Clean sound, monitoring, IFBs and reliable communication workflows.
-          </p>
-        </div>
-      </article>
-
-      <article class="image-card img-studio">
-        <div>
-          <h3 data-en="Technical Production" data-es="Producción Técnica">Technical Production</h3>
-          <p data-en="Multicamera production, graphics, encoding and platform delivery." data-es="Producción multicámara, gráficos, encoding y distribución multiplataforma.">
-            Multicamera production, graphics, encoding and platform delivery.
-          </p>
-        </div>
-      </article>
+        <p class="sec-sub" data-en="We combine broadcast workflows, technical production and modern streaming technology to deliver reliable and polished live experiences — the kind that compete with major television networks." data-es="Combinamos workflows broadcast, producción técnica y tecnología de streaming para crear experiencias en vivo confiables que compiten con los grandes networks.">We combine broadcast workflows, technical production and modern streaming technology to deliver reliable and polished live experiences — the kind that compete with major television networks.</p>
+      </div>
+      <div class="why-grid">
+        <article class="img-card c-cam"><div class="img-card-body"><h3 data-en="Broadcast Experience" data-es="Experiencia Broadcast">Broadcast Experience</h3><p data-en="Real-world network television, REMI and live sports production expertise from professionals who built their careers inside major broadcast operations." data-es="Experiencia real en televisión de red, REMI y producciones deportivas de profesionales formados en grandes operaciones broadcast.">Real-world network television, REMI and live sports production expertise from professionals who built their careers inside major broadcast operations.</p></div></article>
+        <article class="img-card c-aud"><div class="img-card-body"><h3 data-en="Professional Audio" data-es="Audio Profesional">Professional Audio</h3><p data-en="Broadcast-grade audio including Calrec, Dante, IFBs, monitoring and clean mix-minus setups for any production size." data-es="Audio broadcast incluyendo Calrec, Dante, IFBs, monitoreo y configuraciones mix-minus para cualquier escala.">Broadcast-grade audio including Calrec, Dante, IFBs, monitoring and clean mix-minus setups for any production size.</p></div></article>
+        <article class="img-card c-stu"><div class="img-card-body"><h3 data-en="Technical Production" data-es="Producción Técnica">Technical Production</h3><p data-en="Multicamera production, live graphics, encoding, AI-powered tools and reliable multi-platform delivery." data-es="Producción multicámara, gráficos en vivo, encoding, herramientas AI y distribución multiplataforma confiable.">Multicamera production, live graphics, encoding, AI-powered tools and reliable multi-platform delivery.</p></div></article>
+      </div>
     </div>
   </section>
 
+  <!-- ABOUT -->
+  <section id="about" class="about-wrap">
+    <div class="wrap">
+      <div class="about-grid">
+        <div class="about-vis">
+          <div class="about-img"></div>
+          <div class="about-badge">
+            <div class="about-badge-n">15+</div>
+            <div class="about-badge-l" data-en="Years in Broadcast" data-es="Años en Broadcast">Years in Broadcast</div>
+          </div>
+        </div>
+        <div class="about-copy">
+          <div class="sec-label" data-en="About ICX Live" data-es="Sobre ICX Live">About ICX Live</div>
+          <h2 class="about-h" data-en="Engineers who've lived inside the broadcast." data-es="Ingenieros que vivieron dentro del broadcast.">Engineers who've lived inside the broadcast.</h2>
+          <div class="about-role" data-en="Miami-Based · Network-Trained · Independent" data-es="Con base en Miami · Formados en Networks · Independientes">Miami-Based · Network-Trained · Independent</div>
+          <p class="about-bio" data-en="ICX Live was founded by broadcast engineers with over 15 years of hands-on experience at the highest levels of the industry — live national television, major sports productions and complex remote broadcast operations. That expertise is now available to brands, creators, sports leagues and organizations who deserve network-quality production without a network-sized budget." data-es="ICX Live fue fundado por ingenieros broadcast con más de 15 años de experiencia práctica al más alto nivel de la industria — televisión nacional en vivo, grandes producciones deportivas y operaciones broadcast remotas complejas. Esa experiencia ahora está disponible para marcas, creadores, ligas deportivas y organizaciones que merecen producción de calidad network sin un presupuesto de network.">ICX Live was founded by broadcast engineers with over 15 years of hands-on experience at the highest levels of the industry — live national television, major sports productions and complex remote broadcast operations. That expertise is now available to brands, creators, sports leagues and organizations who deserve network-quality production without a network-sized budget.</p>
+          <div class="tech-tags">
+            <span class="t-tag">Clear-Com</span><span class="t-tag">RTS Intercom</span><span class="t-tag">Calrec</span><span class="t-tag">Grass Valley</span><span class="t-tag">Evertz</span><span class="t-tag">Dante / AoIP</span><span class="t-tag">REMI Workflows</span><span class="t-tag">IP Broadcast</span><span class="t-tag">Live Streaming</span><span class="t-tag">Remote Production</span>
+          </div>
+          <div class="stats-row">
+            <div class="stat-box"><div class="stat-n">15+</div><div class="stat-l" data-en="Years Experience" data-es="Años de Exp.">Years Experience</div></div>
+            <div class="stat-box"><div class="stat-n">500+</div><div class="stat-l" data-en="Productions" data-es="Producciones">Productions</div></div>
+            <div class="stat-box"><div class="stat-n">3</div><div class="stat-l" data-en="Major Networks" data-es="Grandes Networks">Major Networks</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
   <section id="services" class="section">
-    <div class="section-heading">
-      <span class="eyebrow" data-en="Services" data-es="Servicios">Services</span>
-
-      <h2 data-en="Professional live production solutions." data-es="Soluciones profesionales de producción en vivo.">
-        Professional live production solutions.
-      </h2>
-    </div>
-
-    <div class="cap-grid">
-      <article class="cap-card img-sports">
-        <div>
-          <span>SPORTS</span>
-          <h3 data-en="Sports Commentary Production" data-es="Producción Deportiva">Sports Commentary Production</h3>
-          <p data-en="Remote and studio-based sports productions with commentators, graphics and live delivery." data-es="Producciones deportivas remotas o en estudio con comentaristas, gráficos y entrega en vivo.">
-            Remote and studio-based sports productions with commentators, graphics and live delivery.
-          </p>
-        </div>
-      </article>
-
-      <article class="cap-card img-podcast">
-        <div>
-          <span>PODCAST</span>
-          <h3 data-en="Premium Podcast Production" data-es="Producción de Podcast">Premium Podcast Production</h3>
-          <p data-en="Professional podcast setups with multicamera production and broadcast audio." data-es="Podcasts profesionales con producción multicámara y audio broadcast.">
-            Professional podcast setups with multicamera production and broadcast audio.
-          </p>
-        </div>
-      </article>
-
-      <article class="cap-card img-hybrid">
-        <div>
-          <span>CORPORATE</span>
-          <h3 data-en="Hybrid Events" data-es="Eventos Híbridos">Hybrid Events</h3>
-          <p data-en="Corporate livestreams, conferences and hybrid productions for remote audiences." data-es="Livestreams corporativos, conferencias y producciones híbridas para audiencias remotas.">
-            Corporate livestreams, conferences and hybrid productions for remote audiences.
-          </p>
-        </div>
-      </article>
-
-      <article class="cap-card img-entertainment">
-        <div>
-          <span>ENTERTAINMENT</span>
-          <h3 data-en="Live Entertainment Productions" data-es="Producciones de Entretenimiento en Vivo">Live Entertainment Productions</h3>
-          <p data-en="Technical live production support for competitions, creator shows and unscripted formats." data-es="Soporte técnico de producción en vivo para competencias, shows de creadores y formatos no guionados.">
-            Technical live production support for competitions, creator shows and unscripted formats.
-          </p>
-        </div>
-      </article>
-
-      <article class="cap-card img-ai">
-        <div>
-          <span>AI TOOLS</span>
-          <h3 data-en="AI Clipping & Live Engagement" data-es="AI Clipping & Engagement">AI Clipping & Live Engagement</h3>
-          <p data-en="Live clipping, captions, highlights and audience engagement tools." data-es="Clipping en vivo, captions, highlights y herramientas de engagement.">
-            Live clipping, captions, highlights and audience engagement tools.
-          </p>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <section id="workflow" class="section workflow-section">
-    <div class="section-heading">
-      <span class="eyebrow" data-en="Workflow" data-es="Workflow">Workflow</span>
-
-      <h2 data-en="Production, delivery and support — end to end." data-es="Producción, entrega y soporte — de punta a punta.">
-        Production, delivery and support — end to end.
-      </h2>
-    </div>
-
-    <div class="workflow">
-      <div class="step">
-        <b>🎬</b>
-        <small>01</small>
-        <h3 data-en="Planning" data-es="Planificación">Planning</h3>
-        <p data-en="Production scope, platform setup and technical planning." data-es="Alcance de producción, plataformas y planificación técnica.">
-          Production scope, platform setup and technical planning.
-        </p>
-      </div>
-
-      <span class="line"></span>
-
-      <div class="step">
-        <b>🎥</b>
-        <small>02</small>
-        <h3 data-en="Production" data-es="Producción">Production</h3>
-        <p data-en="Multicamera switching, audio, graphics and live monitoring." data-es="Switching multicámara, audio, gráficos y monitoreo en vivo.">
-          Multicamera switching, audio, graphics and live monitoring.
-        </p>
-      </div>
-
-      <span class="line"></span>
-
-      <div class="step">
-        <b>📡</b>
-        <small>03</small>
-        <h3 data-en="Delivery" data-es="Distribución">Delivery</h3>
-        <p data-en="Reliable streaming delivery and multi-platform distribution." data-es="Distribución multiplataforma y entrega confiable del stream.">
-          Reliable streaming delivery and multi-platform distribution.
-        </p>
+    <div class="wrap">
+      <div class="sec-label" data-en="Services" data-es="Servicios">Services</div>
+      <h2 class="sec-title" data-en="Professional live production solutions." data-es="Soluciones profesionales de producción en vivo.">Professional live production solutions.</h2>
+      <div class="svc-grid">
+        <article class="svc-card s-sp"><div class="svc-body"><span class="svc-tag">Sports</span><h3 data-en="Sports Commentary Production" data-es="Producción Deportiva">Sports Commentary Production</h3><p data-en="Remote and studio-based sports productions with commentators, graphics and live delivery." data-es="Producciones deportivas remotas o en estudio con comentaristas, gráficos y entrega en vivo.">Remote and studio-based sports productions with commentators, graphics and live delivery.</p></div></article>
+        <article class="svc-card s-po"><div class="svc-body"><span class="svc-tag">Podcast</span><h3 data-en="Premium Podcast Production" data-es="Producción de Podcast">Premium Podcast Production</h3><p data-en="Professional podcast setups with multicamera production and broadcast audio." data-es="Podcasts profesionales con producción multicámara y audio broadcast.">Professional podcast setups with multicamera production and broadcast audio.</p></div></article>
+        <article class="svc-card s-hy"><div class="svc-body"><span class="svc-tag">Corporate</span><h3 data-en="Hybrid Events" data-es="Eventos Híbridos">Hybrid Events</h3><p data-en="Corporate livestreams, conferences and hybrid productions for remote audiences." data-es="Livestreams corporativos, conferencias y producciones híbridas para audiencias remotas.">Corporate livestreams, conferences and hybrid productions for remote audiences.</p></div></article>
+        <article class="svc-card s-en"><div class="svc-body"><span class="svc-tag">Entertainment</span><h3 data-en="Live Entertainment Productions" data-es="Entretenimiento en Vivo">Live Entertainment Productions</h3><p data-en="Technical live production support for competitions, creator shows and unscripted formats." data-es="Soporte técnico en vivo para competencias, shows de creadores y formatos no guionados.">Technical live production support for competitions, creator shows and unscripted formats.</p></div></article>
+        <article class="svc-card s-ai"><div class="svc-body"><span class="svc-tag">AI Tools</span><h3 data-en="AI Clipping & Live Engagement" data-es="AI Clipping & Engagement">AI Clipping & Live Engagement</h3><p data-en="Live captions, automated clipping, highlights and audience engagement tools powered by AI." data-es="Captions en vivo, clipping automatizado, highlights y herramientas de engagement con AI.">Live captions, automated clipping, highlights and audience engagement tools powered by AI.</p></div></article>
       </div>
     </div>
   </section>
 
-  <section id="quote" class="section quote-section">
-    <div class="quote-wrap">
-      <div class="quote-copy">
-        <span class="eyebrow" data-en="Get A Quote" data-es="Solicita una Cotización">Get A Quote</span>
-
-        <h2 data-en="Tell us about your next production." data-es="Cuéntanos sobre tu próxima producción.">
-          Tell us about your next production.
-        </h2>
-
-        <p data-en="Share your project details and production needs. ICX Live will help shape the right workflow for your live event." data-es="Comparte los detalles de tu proyecto. ICX Live te ayudará a definir el workflow adecuado para tu producción.">
-          Share your project details and production needs. ICX Live will help shape the right workflow for your live event.
-        </p>
+  <!-- AI -->
+  <section id="ai" class="ai-wrap">
+    <div class="wrap section">
+      <div class="ai-head">
+        <div>
+          <div class="ai-badge" data-en="◉ New · AI-Powered Services" data-es="◉ Nuevo · Servicios con IA">◉ New · AI-Powered Services</div>
+          <h2 class="sec-title" data-en="Production-grade AI.<br>Built for live." data-es="IA de nivel broadcast.<br>Construida para el live.">Production-grade AI.<br>Built for live.</h2>
+        </div>
+        <p class="sec-sub" data-en="ICX Live integrates cutting-edge AI tools directly into the broadcast workflow — giving you network-quality output at a fraction of traditional costs. No other production company in Miami combines broadcast engineering expertise with this level of AI integration." data-es="ICX Live integra herramientas de IA directamente en el workflow broadcast — dándote output de calidad network a una fracción del costo tradicional. Ninguna otra productora en Miami combina ingeniería broadcast con este nivel de integración de IA.">ICX Live integrates cutting-edge AI tools directly into the broadcast workflow — giving you network-quality output at a fraction of traditional costs. No other production company in Miami combines broadcast engineering expertise with this level of AI integration.</p>
       </div>
-
-      <form id="quoteForm" class="quote-form" action="https://formspree.io/f/mojbqqvq" method="POST">
-        <div class="form-row">
-          <input type="text" name="name" placeholder="Full Name" required>
-          <input type="email" name="email" placeholder="Email Address" required>
-        </div>
-
-        <div class="form-row">
-          <input type="text" name="company" placeholder="Company / Brand">
-
-          <select name="production">
-            <option>Production Type</option>
-            <option>Live Streaming</option>
-            <option>Sports Production</option>
-            <option>Podcast Production</option>
-            <option>Hybrid Event</option>
-            <option>Live Entertainment Production</option>
-            <option>AI Clipping</option>
-          </select>
-        </div>
-
-        <textarea name="message" rows="5" placeholder="Tell us about your project..."></textarea>
-
-        <button type="submit">Request Production Quote →</button>
-      </form>
+      <div class="ai-grid">
+        <div class="ai-card"><div class="ai-icon">💬</div><h4 data-en="Live AI Captions" data-es="Captions AI en Vivo">Live AI Captions</h4><p data-en="Real-time bilingual subtitles (EN/ES) generated automatically during your live production — no operator needed." data-es="Subtítulos bilingües en tiempo real generados automáticamente durante tu producción en vivo.">Real-time bilingual subtitles (EN/ES) generated automatically during your live production — no operator needed.</p><span class="ai-pill" data-en="Available Now" data-es="Disponible Ahora">Available Now</span></div>
+        <div class="ai-card"><div class="ai-icon">✂️</div><h4 data-en="AI Auto-Clipping" data-es="Clipping Automático AI">AI Auto-Clipping</h4><p data-en="After every production, receive 10–15 social-ready clips automatically optimized for Instagram, TikTok and YouTube." data-es="Después de cada producción, recibe 10–15 clips optimizados para Instagram, TikTok y YouTube.">After every production, receive 10–15 social-ready clips automatically optimized for Instagram, TikTok and YouTube.</p><span class="ai-pill" data-en="Available Now" data-es="Disponible Ahora">Available Now</span></div>
+        <div class="ai-card"><div class="ai-icon">🎨</div><h4 data-en="AI Live Graphics" data-es="Gráficos en Vivo AI">AI Live Graphics</h4><p data-en="Dynamic lower thirds, name tags and branded on-screen graphics generated and triggered automatically during your broadcast." data-es="Lower thirds dinámicos, identificadores y gráficos de marca activados automáticamente durante tu transmisión.">Dynamic lower thirds, name tags and branded on-screen graphics generated and triggered automatically during your broadcast.</p><span class="ai-pill" data-en="Available Now" data-es="Disponible Ahora">Available Now</span></div>
+        <div class="ai-card"><div class="ai-icon">🌐</div><h4 data-en="AI Translation & Dubbing" data-es="Traducción y Doblaje AI">AI Translation & Dubbing</h4><p data-en="Deliver your content in English and Spanish with AI-powered translation and voice dubbing — built for the Miami bilingual market." data-es="Entrega tu contenido en inglés y español con traducción y doblaje de IA — construido para el mercado bilingüe de Miami.">Deliver your content in English and Spanish with AI-powered translation and voice dubbing — built for the Miami bilingual market.</p><span class="ai-pill" data-en="Coming Soon" data-es="Próximamente">Coming Soon</span></div>
+        <div class="ai-card"><div class="ai-icon">📝</div><h4 data-en="AI Content Package" data-es="Paquete de Contenido AI">AI Content Package</h4><p data-en="Every production generates show notes, timestamps, YouTube descriptions, social posts and newsletter copy — automatically delivered after the stream." data-es="Cada producción genera notas, timestamps, descripciones para YouTube, posts y newsletter — entregados automáticamente.">Every production generates show notes, timestamps, YouTube descriptions, social posts and newsletter copy — automatically delivered after the stream.</p><span class="ai-pill" data-en="Add-On" data-es="Add-On">Add-On</span></div>
+        <div class="ai-card"><div class="ai-icon">📡</div><h4 data-en="AI Stream Health Monitor" data-es="Monitor de Stream AI">AI Stream Health Monitor</h4><p data-en="Real-time network and stream quality monitoring with automated alerts — built on broadcast engineering expertise to prevent failures before they happen." data-es="Monitoreo en tiempo real de calidad de red y stream con alertas automáticas — construido sobre ingeniería broadcast para prevenir fallas.">Real-time network and stream quality monitoring with automated alerts — built on broadcast engineering expertise to prevent failures before they happen.</p><span class="ai-pill" data-en="Premium" data-es="Premium">Premium</span></div>
+      </div>
     </div>
   </section>
+
+  <!-- WORKFLOW -->
+  <section id="workflow" class="section">
+    <div class="wrap">
+      <div class="sec-label" data-en="Workflow" data-es="Workflow">Workflow</div>
+      <h2 class="sec-title" data-en="Production, delivery and support — end to end." data-es="Producción, entrega y soporte — de punta a punta.">Production, delivery and support — end to end.</h2>
+      <div class="wf-grid">
+        <div class="wf-step"><b>🎬</b><small>01</small><h3 data-en="Planning" data-es="Planificación">Planning</h3><p data-en="Production scope, platform setup and technical planning tailored to your event." data-es="Alcance de producción, plataformas y planificación técnica adaptada a tu evento.">Production scope, platform setup and technical planning tailored to your event.</p></div>
+        <div class="wf-line"></div>
+        <div class="wf-step"><b>🎥</b><small>02</small><h3 data-en="Production" data-es="Producción">Production</h3><p data-en="Multicamera switching, broadcast audio, live graphics, AI tools and real-time monitoring." data-es="Switching multicámara, audio broadcast, gráficos en vivo, herramientas AI y monitoreo en tiempo real.">Multicamera switching, broadcast audio, live graphics, AI tools and real-time monitoring.</p></div>
+        <div class="wf-line"></div>
+        <div class="wf-step"><b>📡</b><small>03</small><h3 data-en="Delivery" data-es="Distribución">Delivery</h3><p data-en="Reliable multi-platform streaming delivery plus an AI-generated content package for social media." data-es="Distribución multiplataforma confiable más paquete de contenido generado por AI para redes sociales.">Reliable multi-platform streaming delivery plus an AI-generated content package for social media.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section id="quote" class="section">
+    <div class="wrap">
+      <div class="quote-wrap">
+        <div class="quote-copy">
+          <div class="sec-label" data-en="Get A Quote" data-es="Solicita una Cotización">Get A Quote</div>
+          <h2 class="sec-title" data-en="Tell us about your next production." data-es="Cuéntanos sobre tu próxima producción.">Tell us about your next production.</h2>
+          <p data-en="Share your project details and we'll build the right workflow for your live event — backed by network-level broadcast engineering experience." data-es="Comparte los detalles de tu proyecto y construiremos el workflow adecuado — respaldado por experiencia de ingeniería broadcast de nivel network.">Share your project details and we'll build the right workflow for your live event — backed by network-level broadcast engineering experience.</p>
+        </div>
+        <form id="qForm" class="q-form" action="https://formspree.io/f/mojbqqvq" method="POST">
+          <div class="f-row">
+            <input type="text" name="name" placeholder="Full Name" required>
+            <input type="email" name="email" placeholder="Email Address" required>
+          </div>
+          <div class="f-row">
+            <input type="text" name="company" placeholder="Company / Brand">
+            <select name="production">
+              <option value="">Production Type</option>
+              <option>Live Streaming</option>
+              <option>Sports Production</option>
+              <option>Podcast Production</option>
+              <option>Hybrid Event</option>
+              <option>Live Entertainment</option>
+              <option>AI Clipping & Captions</option>
+              <option>AI Content Package</option>
+            </select>
+          </div>
+          <textarea name="message" rows="4" placeholder="Tell us about your project..."></textarea>
+          <button type="submit" data-en="Request Production Quote →" data-es="Solicitar Cotización →">Request Production Quote →</button>
+          <div class="f-status" id="fSt"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
 </main>
 
+<!-- FOOTER -->
 <footer>
-  <div class="footer-brand">
-    <img src="https://res.cloudinary.com/dfizcwryy/image/upload/ChatGPT_Image_17_may_2026_03_59_14_p.m._ubjbgm.jpg" alt="ICX Live" class="footer-logo">
-
-    <small data-en="Premium live production for sports, creators, brands and modern digital events." data-es="Producción profesional para deportes, creadores, marcas y eventos digitales.">
-      Premium live production for sports, creators, brands and modern digital events.
-    </small>
+  <div class="wrap">
+    <div class="foot-inner">
+      <div class="foot-brand">
+        <img src="https://res.cloudinary.com/dfizcwryy/image/upload/ChatGPT_Image_17_may_2026_03_59_14_p.m._ubjbgm.jpg" alt="ICX Live" class="foot-logo">
+        <p data-en="Network-level broadcast engineering for sports, creators, brands and modern digital events. Based in Miami, FL." data-es="Ingeniería broadcast de nivel network para deportes, creadores, marcas y eventos digitales modernos. Con base en Miami, FL.">Network-level broadcast engineering for sports, creators, brands and modern digital events. Based in Miami, FL.</p>
+      </div>
+      <div class="foot-col">
+        <h5 data-en="Services" data-es="Servicios">Services</h5>
+        <a href="#services" data-en="Sports Production" data-es="Producción Deportiva">Sports Production</a>
+        <a href="#services" data-en="Podcast Production" data-es="Producción de Podcast">Podcast Production</a>
+        <a href="#services" data-en="Hybrid Events" data-es="Eventos Híbridos">Hybrid Events</a>
+        <a href="#ai" data-en="AI Services" data-es="Servicios AI">AI Services</a>
+      </div>
+      <div class="foot-col">
+        <h5 data-en="Company" data-es="Empresa">Company</h5>
+        <a href="#why" data-en="Why ICX" data-es="Por qué ICX">Why ICX</a>
+        <a href="#about" data-en="About" data-es="Nosotros">About</a>
+        <a href="#quote" data-en="Request a Quote" data-es="Solicitar Cotización">Request a Quote</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 ICX Live. All rights reserved.</p>
+      <p data-en="Miami, FL · Broadcast Engineering · Live Production · AI Services" data-es="Miami, FL · Ingeniería Broadcast · Producción en Vivo · Servicios AI">Miami, FL · Broadcast Engineering · Live Production · AI Services</p>
+    </div>
   </div>
-
-  <div class="footer-links">
-    <a href="#why">Why ICX</a>
-    <a href="#services">Services</a>
-    <a href="#workflow">Workflow</a>
-    <a href="#quote">Quote</a>
-  </div>
-
-  <p>© 2026 ICX Live. All rights reserved.</p>
 </footer>
-    <script  src="./script.js"></script>
 
-  </body>
-  
+<script>
+/* Hamburger */
+const hbg=document.getElementById('hbg'),mob=document.getElementById('mob');
+hbg.addEventListener('click',()=>mob.classList.toggle('open'));
+mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mob.classList.remove('open')));
+
+/* Language */
+const lBtns=document.querySelectorAll('.lang-btn');
+const tEls=document.querySelectorAll('[data-en][data-es]');
+function setLang(l){
+  tEls.forEach(el=>el.innerHTML=el.dataset[l]);
+  lBtns.forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
+  document.documentElement.lang=l;
+  localStorage.setItem('icx-lang',l);
+}
+lBtns.forEach(b=>b.addEventListener('click',()=>setLang(b.dataset.lang)));
+const saved=localStorage.getItem('icx-lang');
+if(saved&&saved!=='en')setLang(saved);
+
+/* Card glow effect */
+document.querySelectorAll('.img-card,.svc-card,.wf-step,.ai-card').forEach(c=>{
+  c.addEventListener('mousemove',e=>{
+    const r=c.getBoundingClientRect();
+    c.style.setProperty('--mx',`${e.clientX-r.left}px`);
+    c.style.setProperty('--my',`${e.clientY-r.top}px`);
+  });
+  c.addEventListener('mouseleave',()=>{
+    c.style.setProperty('--mx','50%');
+    c.style.setProperty('--my','50%');
+  });
+});
+
+/* Form */
+const qf=document.getElementById('qForm'),st=document.getElementById('fSt');
+if(qf){
+  const sb=qf.querySelector('button[type="submit"]');
+  qf.addEventListener('submit',async e=>{
+    e.preventDefault();
+    sb.disabled=true;sb.textContent='Sending...';
+    try{
+      const r=await fetch(qf.action,{method:'POST',body:new FormData(qf),headers:{Accept:'application/json'}});
+      if(r.ok){st.textContent="✓ Request sent! We'll be in touch soon.";st.className='f-status ok';qf.reset();}
+      else{st.textContent='Something went wrong. Please try again.';st.className='f-status err';}
+    }catch{st.textContent='Connection error. Please try again.';st.className='f-status err';}
+    sb.disabled=false;sb.textContent='Request Production Quote →';
+  });
+}
+
+/* Smooth scroll offset for iOS */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
+});
+</script>
+</body>
 </html>
